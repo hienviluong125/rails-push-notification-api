@@ -1,4 +1,6 @@
 class Api::SchoolClassesController < ApplicationController
+  before_action :authorized, only: [:create]
+
   def create
     school_class = SchoolClass.new(school_class_params)
 
@@ -12,6 +14,13 @@ class Api::SchoolClassesController < ApplicationController
   private
 
   def school_class_params
-    params.require(:school_class).permit(:name, :user_id, :member_ids, :user_school_classes_attributes)
+    params
+      .require(:school_class)
+      .permit(
+        :name,
+        :user_id,
+        :member_ids,
+        user_school_classes_attributes: %w[id user_id school_id role _destroy]
+      )
   end
 end

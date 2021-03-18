@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :users
     resources :activities
     resources :device_tokens
-    resources :school_class
+    resources :school_classes
 
     post :login, to: 'users#login', as: :login
     delete :logout, to: 'users#logout', as: :logout
