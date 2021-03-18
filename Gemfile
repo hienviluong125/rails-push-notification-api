@@ -25,7 +25,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors'
 gem 'jwt'
 gem 'fcm'
-gem 'sidekiq'
+gem 'sidekiq', '~> 5.1'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
