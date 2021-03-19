@@ -110,6 +110,8 @@ GEM
     racc (1.5.2)
     rack (2.2.3)
     rack-cors (1.0.3)
+    rack-protection (2.1.0)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.0.3.5)
@@ -142,11 +144,12 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redis (4.2.5)
-    sidekiq (6.2.0)
-      connection_pool (>= 2.2.2)
+    redis (4.1.4)
+    sidekiq (5.2.9)
+      connection_pool (~> 2.2, >= 2.2.2)
       rack (~> 2.0)
-      redis (>= 4.2.0)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.5, < 4.2)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -183,13 +186,13 @@ DEPENDENCIES
   puma (~> 4.1)
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.5)
-  sidekiq
+  sidekiq (~> 5.1)
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
 
 RUBY VERSION
-   ruby 2.6.0p0
+   ruby 2.6.6p146
 
 BUNDLED WITH
    1.17.2
