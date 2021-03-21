@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::UsersController < ApplicationController
-  before_action :authorized, except: %w[create login]
+  before_action :authorized, except: %w[create login logout]
 
   def create
     @user = User.create(user_params)
@@ -21,6 +21,20 @@ class Api::UsersController < ApplicationController
       return render json: { success: true, user: { email: @user.email, id: @user.id }, token: token }
     else
       return render json: { success: false, error: 'Invalid username or password' }
+    end
+  end
+
+  def logout
+    return render json: { success: true } if params[:token].blank?
+
+    device_token = logged_in_user.device_tokens.find_by(token: params[:token])
+
+    return render json: { success: true } if device_token.blank?
+
+    if device_token.destroy
+      render json: { success: true }
+    else
+      render json: { success: false }
     end
   end
 
