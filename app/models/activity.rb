@@ -12,10 +12,6 @@ class Activity < ApplicationRecord
   private
 
   def push_notification
-    # TODO: 'Add to sidekiq queue'
-    # puts "************** #{self.id} **************"
-    # puts "Add job to sidekiq queue"
-    # puts "*******************************"
     PushNotificationWorker.perform_async(self.school_class_id, self.name)
   end
 end
