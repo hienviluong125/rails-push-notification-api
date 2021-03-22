@@ -1,6 +1,6 @@
 class PushNotificationWorker
   include Sidekiq::Worker
-  sidekiq_options retry: false, queue: 'notification'
+  sidekiq_options queue: 'notification'
 
   def perform(school_class_id, activity_name)
     puts '***************************************'
@@ -17,21 +17,16 @@ class PushNotificationWorker
 
     puts "Device tokens: #{device_tokens}"
     puts "Activity name: #{activity_name}"
-
-    sleep 3
-
     puts '***************************************\n'
 
-    # server_key = ENV['FCM_KEY']
-    # fcm = FCM.new(server_key)
-
-    # options = {
-      # notification: {
-        # title: 'New activity!',
-        # body: activity_name
-      # }
-    # }
-
-    # fcm.send(device_tokens, options)
+    server_key = ENV['FCM_KEY']
+    fcm = FCM.new(server_key)
+    options = {
+      notification: {
+        title: 'New activity!',
+        body: activity_name
+      }
+    }
+    fcm.send(device_tokens, options)
   end
 end
